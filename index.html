@@ -151,46 +151,25 @@
       
         <p>之前一直用GUI，现在想简单一点直接用git bash，整理git的常用命令。  </p>
 <h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><p><img src="/assets/blogImgs/git-version-manage.jpg" alt="">  </p>
-<p>git是分布式版本控制软件。  git文件夹内的.git文件夹是仓库repository，其他是文件或者目录是working tree。<br>repository内包含暂存区stage、分支branch（默认会有master分支）以及指向分支的指针HEAD。  </p>
-<h3 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">$ git init  </span><br><span class="line">```  </span><br><span class="line">初始化当前目录为Git仓库。  </span><br><span class="line"></span><br><span class="line">```  </span><br><span class="line">$ git add &lt;file&gt; </span><br><span class="line">```  </span><br><span class="line">从working tree添加不定数量的file到stage。 </span><br><span class="line"></span><br><span class="line">```  </span><br><span class="line">$ git commit -m &apos;change log&apos;  </span><br><span class="line">```  </span><br><span class="line">将stage的所有内容commit到当前分支，stage将被清空。  </span><br><span class="line"></span><br><span class="line">```  </span><br><span class="line">$ git diff  </span><br><span class="line">```  </span><br><span class="line">比较working tree与stage中现有内容异同。</span><br><span class="line"></span><br><span class="line">```  </span><br><span class="line">$ git status  </span><br><span class="line">```  </span><br><span class="line">查看当前branch各方面状态，很重要。  </span><br><span class="line">  </span><br><span class="line">```  </span><br><span class="line">$ git log [--graph]</span><br><span class="line">```  </span><br><span class="line">查看commit历史，加上--graph可以看到时间线，记录中最重要的是commit id以及相应commit msg</span><br><span class="line">  </span><br><span class="line">```  </span><br><span class="line">$ git branch</span><br><span class="line">```  </span><br><span class="line">查看当前HEAD指向，列出所有branch。</span><br></pre></td></tr></table></figure>
-<p>$ git checkout branch<br>$ git checkout -b branch</p>
-<pre><code>第一条，切换branch，具体内容是将branch最新commit的内容复制到working tree,并将HEAD指向branch的最新commit上。  
-第二条，创建并切换branch，具体内容是将working tree内容commit到新创建的branch，并将HEAD指向新创建的branch的最新commit上。  
-
-### 后悔药  
-</code></pre><p>$ git checkout – file</p>
-<pre><code>撤销working tree中对应file modification，具体内容是用stage对应的file替换working tree的file。  
-
-</code></pre><p>$ git reset HEAD file</p>
-<pre><code>unstage，撤销已经add到stage中对应的file modification，具体内容是用当前branch最新commit中的对应的file替换stage的file。
-
-</code></pre><p>$ git reflog  </p>
-<pre><code>列出所有的version change，最主要是commit id，穿梭时光利器！   
-
-
-</code></pre><p>$ git reset [–hard | –soft] [commit id | HEAD^ | HEAD^^]  </p>
-<pre><code>将当前branch版本重置到目标commit id状态。（HEAD表示当前版本，HEAD^表示上个版本，HEAD^^表示上上个版本）。  
-hard参数会将working tree、stage的内容重置为目标版本内容。  
-soft参数会使得working tree、stage保持原样。  
-
-</code></pre><p>$ git rm file</p>
-<pre><code>这个有点糊涂，之后再试作用。。。  
-
-### 分布式大法  
-![]()  
-
-配合支持git的代码托管平台使用，比如github，在github上创建相同名字的repository。  
-</code></pre><p>$ git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:username/reponame.git  </p>
-<pre><code>给local repository关联remote repository，并将remote repository命名为origin。  
-
-</code></pre><p>$ git push -u origin master<br>$ git [push | pull] origin master</p>
-<pre><code>第一条，将local repository的branch master的内容push到remote，-u参数将local master和remote master关联起来，第二条，执行第一条以后直接使用push或pull。  
-
-**好的习惯是先在github上create repository，然后clone下来开发**  
-
-</code></pre><p>git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:username/reponame.git<br><code>`</code><br>克隆仓库  </p>
-<h3 id="分支–分治"><a href="#分支–分治" class="headerlink" title="分支–分治"></a>分支–分治</h3><p><strong>repository一般有master、acceptance、develop、feature、issue</strong>  s</p>
-<p><code>master</code>：主线分支，代码稳定，用于正式版本发布。<br><code>acceptance</code>：测试分支，代码基本稳定，准master分支。<br><code>develop</code>：开发分支，代码不稳定，用于日常开发，团队成员往里面merge阶段性开发代码。<br><code>feature</code>：特性分支，用于开发项目某个具体特性，然后merge到develop。<br><code>issue</code>：debug分支，用于调试修改bug，然后merge到devlop分支。  </p>
+<p>git是分布式版本控制软件。  git文件夹内的.git文件夹是仓库repository，其他是文件或者目录是working tree。<br>repository内包含暂存区stage、分支branch（默认会有master分支，有一个名为master的指针指向该分支的当前commit状态）以及指向指针master的指针HEAD。  </p>
+<p><img src="/assets/blogImgs/git-branch.jpg" alt=""><br>branch代表的就是由多个连续的状态点变迁串联起来的抽象概念，而每个branch都有一个同名指针指向当前commit状态。  </p>
+<h3 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git init  </span><br><span class="line">```  </span><br><span class="line">初始化当前目录为Git仓库。</span><br></pre></td></tr></table></figure>
+<p>$ git add <file><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">从working tree添加不定数量的file到stage。</span><br></pre></td></tr></table></figure></file></p>
+<p>$ git commit -m ‘change log’<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">将stage的所有内容commit到当前分支，stage将被清空。</span><br></pre></td></tr></table></figure></p>
+<p>$ git diff<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">比较working tree与stage中现有内容异同。</span><br></pre></td></tr></table></figure></p>
+<p>$ git status<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">查看当前branch各方面状态，很重要。</span><br></pre></td></tr></table></figure></p>
+<p>$ git log [–graph]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">查看commit历史，加上--graph可以看到时间线，记录中最重要的是commit id以及相应commit msg</span><br></pre></td></tr></table></figure></p>
+<p>$ git branch<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">查看当前HEAD指向，列出所有branch。</span><br></pre></td></tr></table></figure></p>
+<p>$ git checkout develop<br>$ git checkout -b develop<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">第一条，切换branch到develop，具体内容是将branch develop最新commit的内容复制到working tree,并将HEAD指向branch的最新上。  </span><br><span class="line">第二条，创建并切换branch到develop，具体内容是repository创建一个指针develop，并指向当前分支的状态，然后将HEAD指向develop。  </span><br><span class="line"></span><br><span class="line">### 后悔药</span><br></pre></td></tr></table></figure></p>
+<p>$ git checkout – file<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">撤销working tree中对应file modification，具体内容是用stage对应的file替换working tree的file。</span><br></pre></td></tr></table></figure></p>
+<p>$ git reset HEAD file<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unstage，撤销已经add到stage中对应的file modification，具体内容是用当前branch最新commit中的对应的file替换stage的file。</span><br></pre></td></tr></table></figure></p>
+<p>$ git reflog<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">列出所有的version change，最主要是commit id，穿梭时光利器！</span><br></pre></td></tr></table></figure></p>
+<p>$ git reset [–hard | –soft] [commit id | HEAD^ | HEAD^^]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">将当前branch版本重置到目标commit id状态。（HEAD表示当前版本，HEAD^表示上个版本，HEAD^^表示上上个版本）。  </span><br><span class="line">hard参数会将working tree、stage的内容重置为目标版本内容。  </span><br><span class="line">soft参数会使得working tree、stage保持原样。</span><br></pre></td></tr></table></figure></p>
+<p>$ git rm file<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">这个有点糊涂，之后再试作用。。。  </span><br><span class="line"></span><br><span class="line">### 分布式大法  </span><br><span class="line">![]()  </span><br><span class="line"></span><br><span class="line">配合支持git的代码托管平台使用，比如github，在github上创建相同名字的repository。</span><br></pre></td></tr></table></figure></p>
+<p>$ git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:username/reponame.git<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">给local repository关联remote repository，并将remote repository命名为origin。</span><br></pre></td></tr></table></figure></p>
+<p>$ git push -u origin master<br>$ git [push | pull] origin master<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">第一条，将local repository的branch master的内容push到remote，-u参数将local master和remote master关联起来，第二条，执行第一条以后直接使用push或pull。  </span><br><span class="line"></span><br><span class="line">**好的习惯是先在github上create repository，然后clone下来开发**</span><br></pre></td></tr></table></figure></p>
+<p>git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:username/reponame.git<br><code>`</code><br>克隆仓库  </p>
+<h3 id="分支–分治"><a href="#分支–分治" class="headerlink" title="分支–分治"></a>分支–分治</h3><p><strong>repository一般有master、acceptance、develop、feature、issue</strong>..<br><code>master</code>：主线分支，代码稳定，用于正式版本发布。<br><code>acceptance</code>：测试分支，代码基本稳定，准master分支。<br><code>develop</code>：开发分支，代码不稳定，用于日常开发，团队成员往里面merge阶段性开发代码。<br><code>feature</code>：特性分支，用于开发项目某个具体特性，然后merge到develop。<br><code>issue</code>：debug分支，用于调试修改bug，然后merge到devlop分支。  </p>
 
       
 

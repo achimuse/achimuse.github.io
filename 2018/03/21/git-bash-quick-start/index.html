@@ -17,7 +17,7 @@
 <meta property="og:description" content="之前一直用GUI，现在想简单点用git bash，整理git的常用命令。   基础知识   git是分布式版本控制软件。  git文件夹内的.git文件夹是仓库repository，其他是文件或者目录是working tree。repository内包含暂存区stage、分支branch（默认会有master分支，有一个名为master的指针指向该分支的当前commit）以及指向指针master的">
 <meta property="og:image" content="http://yoursite.com/assets/blogImgs/git-version-manage.jpg">
 <meta property="og:image" content="http://yoursite.com/assets/blogImgs/git-branch.jpg">
-<meta property="og:updated_time" content="2018-03-24T03:03:53.487Z">
+<meta property="og:updated_time" content="2018-03-24T03:11:03.953Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git Bash 的常用方法">
 <meta name="twitter:description" content="之前一直用GUI，现在想简单点用git bash，整理git的常用命令。   基础知识   git是分布式版本控制软件。  git文件夹内的.git文件夹是仓库repository，其他是文件或者目录是working tree。repository内包含暂存区stage、分支branch（默认会有master分支，有一个名为master的指针指向该分支的当前commit）以及指向指针master的">
@@ -198,7 +198,22 @@
 <p>第一条，将local repository的branch master的内容push到remote，-u参数将local master和remote master关联起来，第二条，执行第一条以后直接使用push或pull。  </p>
 <p><strong>好的习惯是先在github上create repository，然后clone下来开发</strong>  </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@github.com:username/reponame.git</span><br></pre></td></tr></table></figure>
-<h3 id="分支–分治–融合–删除"><a href="#分支–分治–融合–删除" class="headerlink" title="分支–分治–融合–删除"></a>分支–分治–融合–删除</h3><h4 id="分治"><a href="#分治" class="headerlink" title="分治"></a>分治</h4><p>repository一般有分支master、acceptance、develop、feature、issue<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">```acceptance```：测试分支，代码基本稳定，准master分支。  </span><br><span class="line">```develop```：开发分支，代码不稳定，用于日常开发，团队成员往里面merge阶段性开发代码。  </span><br><span class="line">```feature```：特性分支，用于开发项目某个具体特性，然后merge到develop。  </span><br><span class="line">```issue```：debug分支，用于调试修改bug，然后merge到devlop分支。  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### 融合</span><br><span class="line">merge有两种模式fast-forword、no-ff：  </span><br><span class="line">- fast-forword模式会直接将master指向develop，no-ff模式会merge两个分支的commit形成新的conmmit，并将master指向新的commit。  </span><br><span class="line">- no-ff模式merge时会遇到两种情况：有冲突、无冲突。  </span><br><span class="line"></span><br><span class="line">假设当前所在分支为master，需要merge develop到master。  </span><br><span class="line"></span><br><span class="line">无冲突情况存在于两种分支状态：  </span><br><span class="line">- develop的当前commit的前一个版本是master的当前commit，同时只有这种情况适合fast-forword模式。</span><br><span class="line"></span><br><span class="line">- develop的commit的前一个版本不是master的当前commit，但是两个commit之间的diff不会相互干扰，换句话说就是两个commit之间的diff不会出现在同一个文件里。  </span><br><span class="line">有冲突的情况存在于：  </span><br><span class="line">- develop的commit的前一个版本不是master的当前commit，同时两个commit之间的diff相互干扰，换句话说就是两个commit之间的diff会出现在同一个文件里。  </span><br><span class="line">在有冲突的merge中需要手动处理冲突，然后手动commit。  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">$ git merge &lt;--no-ff&gt; develo</span><br></pre></td></tr></table></figure></p>
+<h3 id="分支–分治–融合–删除"><a href="#分支–分治–融合–删除" class="headerlink" title="分支–分治–融合–删除"></a>分支–分治–融合–删除</h3><h4 id="分治"><a href="#分治" class="headerlink" title="分治"></a>分治</h4><p>repository一般有分支master、acceptance、develop、feature、issue<br>master：主线分支，代码稳定，用于正式版本发布。<br>acceptance：测试分支，代码基本稳定，准master分支。<br>develop：开发分支，代码不稳定，用于日常开发，团队成员往里面merge阶段性开发代码。<br>feature：特性分支，用于开发项目某个具体特性，然后merge到develop。<br>issue：debug分支，用于调试修改bug，然后merge到devlop分支。  </p>
+<h4 id="融合"><a href="#融合" class="headerlink" title="融合"></a>融合</h4><p>merge有两种模式fast-forword、no-ff：  </p>
+<ul>
+<li>fast-forword模式会直接将master指向develop，no-ff模式会merge两个分支的commit形成新的conmmit，并将master指向新的commit。  </li>
+<li>no-ff模式merge时会遇到两种情况：有冲突、无冲突。  </li>
+</ul>
+<p>假设当前所在分支为master，需要merge develop到master。  </p>
+<p>无冲突情况存在于两种分支状态：  </p>
+<ul>
+<li><p>develop的当前commit的前一个版本是master的当前commit，同时只有这种情况适合fast-forword模式。</p>
+</li>
+<li><p>develop的commit的前一个版本不是master的当前commit，但是两个commit之间的diff不会相互干扰，换句话说就是两个commit之间的diff不会出现在同一个文件里。<br>有冲突的情况存在于：  </p>
+</li>
+<li>develop的commit的前一个版本不是master的当前commit，同时两个commit之间的diff相互干扰，换句话说就是两个commit之间的diff会出现在同一个文件里。<br>在有冲突的merge中需要手动处理冲突，然后手动commit。  </li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git merge &lt;--no-ff&gt; develo</span><br></pre></td></tr></table></figure>
 <p>不加参数–no-ff，并满足以上所述条件,则默认是fast-forward模式，就是直接将master指向develop的当前commit。fast-forward模式没有merge历史分支。<br>加上参数–no-ff，并满足以上所述条件，则是no-fff模式，无冲突情况下master自动commit，但依然需要手动写commit msg；有冲突情况下需要手动解决冲突、手动commit。no-fff模式有merge历史分支。<br>merge只会改变master，不会改变develop的状态。merge操作会使得working tree、stage与merge commit保持一致。</p>
 <h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git branch &lt;name&gt;</span><br><span class="line">$ git branch -d &lt;name&gt;</span><br></pre></td></tr></table></figure>
 <p>git鼓励create branch来解决问题，merge之后删除branch，这是一种安全高效的方式。  </p>
@@ -315,7 +330,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础知识"><span class="toc-number">1.</span> <span class="toc-text">基础知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基础命令"><span class="toc-number">2.</span> <span class="toc-text">基础命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后悔药"><span class="toc-number">3.</span> <span class="toc-text">后悔药</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分布式大法"><span class="toc-number">4.</span> <span class="toc-text">分布式大法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分支–分治–融合–删除"><span class="toc-number">5.</span> <span class="toc-text">分支–分治–融合–删除</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#分治"><span class="toc-number">5.1.</span> <span class="toc-text">分治</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#删除"><span class="toc-number">5.2.</span> <span class="toc-text">删除</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TODO"><span class="toc-number">6.</span> <span class="toc-text">TODO</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础知识"><span class="toc-number">1.</span> <span class="toc-text">基础知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基础命令"><span class="toc-number">2.</span> <span class="toc-text">基础命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后悔药"><span class="toc-number">3.</span> <span class="toc-text">后悔药</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分布式大法"><span class="toc-number">4.</span> <span class="toc-text">分布式大法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分支–分治–融合–删除"><span class="toc-number">5.</span> <span class="toc-text">分支–分治–融合–删除</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#分治"><span class="toc-number">5.1.</span> <span class="toc-text">分治</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#融合"><span class="toc-number">5.2.</span> <span class="toc-text">融合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#删除"><span class="toc-number">5.3.</span> <span class="toc-text">删除</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TODO"><span class="toc-number">6.</span> <span class="toc-text">TODO</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -423,11 +438,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">dairy</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color1">dairy</a>
               </li>
             
             <div class="clearfix"></div>

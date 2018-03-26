@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018/3 | Mr.luo&#39;s blogs</title>
+  <title>http协议小记 | Mr.luo&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Mr.luo&#39;s blogs">
-<meta property="og:url" content="http://yoursite.com/archives/2018/03/index.html">
+  <meta name="description" content="概述当前http协议主流版本是HTTP/1.1, 预计不久将来会使用HTTP/2.0   URI/URL/URNURI是 Uniform Resource Identifiers 的简写，统一资源标识符。URL是 Uniform Resource Locators 的简写，统一资源定位符。URN是 Uniform Resource Names 的简写，统一资源命名符。   URL和URN是URI的">
+<meta name="keywords" content="web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="http协议小记">
+<meta property="og:url" content="http://yoursite.com/2018/03/26/http/index.html">
 <meta property="og:site_name" content="Mr.luo&#39;s blogs">
+<meta property="og:description" content="概述当前http协议主流版本是HTTP/1.1, 预计不久将来会使用HTTP/2.0   URI/URL/URNURI是 Uniform Resource Identifiers 的简写，统一资源标识符。URL是 Uniform Resource Locators 的简写，统一资源定位符。URN是 Uniform Resource Names 的简写，统一资源命名符。   URL和URN是URI的">
+<meta property="og:image" content="http://yoursite.com/assets/blogImgs/url.jpg">
+<meta property="og:updated_time" content="2018-03-26T10:21:23.993Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mr.luo&#39;s blogs">
+<meta name="twitter:title" content="http协议小记">
+<meta name="twitter:description" content="概述当前http协议主流版本是HTTP/1.1, 预计不久将来会使用HTTP/2.0   URI/URL/URNURI是 Uniform Resource Identifiers 的简写，统一资源标识符。URL是 Uniform Resource Locators 的简写，统一资源定位符。URN是 Uniform Resource Names 的简写，统一资源命名符。   URL和URN是URI的">
+<meta name="twitter:image" content="http://yoursite.com/assets/blogImgs/url.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Mr.luo&#39;s blogs" type="application/atom+xml">
   
@@ -127,36 +134,51 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-http" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/26/http/" class="archive-article-date">
-  	<time datetime="2018-03-26T09:03:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-26</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/26/http/">http协议小记</a>
+    <h1 class="article-title" itemprop="name">
+      http协议小记
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/03/26/http/" class="archive-article-date">
+  	<time datetime="2018-03-26T09:03:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>当前http协议主流版本是HTTP/1.1, 预计不久将来会使用HTTP/2.0  </p>
+<h3 id="URI-URL-URN"><a href="#URI-URL-URN" class="headerlink" title="URI/URL/URN"></a>URI/URL/URN</h3><p><img src="/assets/blogImgs/url.jpg" alt=""><br>URI是 Uniform Resource Identifiers 的简写，统一资源标识符。<br>URL是 Uniform Resource Locators 的简写，统一资源定位符。<br>URN是 Uniform Resource Names 的简写，统一资源命名符。  </p>
+<p>URL和URN是URI的子集，以下例子都是URI，但不一定都是URL。  </p>
+<blockquote>
+<p><a href="ftp://ftp.is.co.za/rfc/rfc1808.txt" target="_blank" rel="noopener">ftp://ftp.is.co.za/rfc/rfc1808.txt</a> (also a URL because of the protocol)<br><a href="http://www.ietf.org/rfc/rfc2396.txt" target="_blank" rel="noopener">http://www.ietf.org/rfc/rfc2396.txt</a> (also a URL because of the protocol)<br>ldap://[2001:db8::7]/c=GB?objectClass?one (also a URL because of the protocol)<br>mailto:<a href="mailto:John.Doe@example.com" target="_blank" rel="noopener">John.Doe@example.com</a> (also a URL because of the protocol)<br>news:comp.infosystems.<a href="http://www.servers.unix" target="_blank" rel="noopener">www.servers.unix</a> (also a URL because of the protocol)<br>tel:+1-816-555-1212<br>telnet://192.0.2.16:80/ (also a URL because of the protocol)<br>urn:oasis:names:specification:docbook:dtd:xml:4.1.2  </p>
+</blockquote>
+<h3 id="简单的理解"><a href="#简单的理解" class="headerlink" title="简单的理解"></a>简单的理解</h3><p>http协议在一条通路上必然有一端是客户端另一端是服务端，而且只能由客户端发出请求，服务端响应该请求。  </p>
+<p>http请求的根本目标是操作资源，所以请求中使用URI定位资源，使用方法表明意图(restful)：  </p>
+<ul>
+<li>GET方法，请求资源，查  </li>
+<li>POST方法，推送资源，增  </li>
+<li>PUT方法，改动资源，改  </li>
+<li>DELETE方法，删除资源，删</li>
+<li>HEAD方法，同GET，响应不返回报文主体，用于确认URI有效性和资源更新时间  </li>
+</ul>
+<p>持久连接（HTTP Persistent Connections），建立TCP连接后只要任一端没有提出断开连接，则保持连接状态，提高请求相应速度。在同一TCP连接上会有多有HTTP连接，同时线管化（Pipelining）方式使得不用等待上个请求的相应就可以发送下一个请求。  </p>
+<p>stateless，不会保存请求或相应的状态，优点在于减少服务器负担。如果需要状态则使用Cookie。客户端第一次向服务端发出请求（要求Cookie），服务端生成Cookie并记录下Cookie与客户端的映射，在响应返回Cookie,客户端收到后保存。之后的每个请求都带上Cookie，即保存了状态。Cookie就是一个字符id。  </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -168,95 +190,119 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/03/26/http/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/21/git-bash-quick-start/" class="archive-article-date">
-  	<time datetime="2018-03-21T06:44:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-21</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/03/21/git-bash-quick-start/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Git Bash 的常用方法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/21/git-bash-quick-start/">Git Bash 的常用方法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#URI-URL-URN"><span class="toc-number">2.</span> <span class="toc-text">URI/URL/URN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简单的理解"><span class="toc-number">3.</span> <span class="toc-text">简单的理解</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/20/1037/" class="archive-article-date">
-  	<time datetime="2018-03-20T11:31:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-20</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/20/1037/">1037</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dairy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -279,8 +325,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

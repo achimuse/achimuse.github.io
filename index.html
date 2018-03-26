@@ -129,6 +129,96 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-http" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/26/http/">http协议小记</a>
+    </h1>
+  
+
+        
+        <a href="/2018/03/26/http/" class="archive-article-date">
+  	<time datetime="2018-03-26T09:03:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>当前http协议主流版本是HTTP/1.1, 预计不久将来会使用HTTP/2.0  </p>
+<h3 id="URI-URL-URN"><a href="#URI-URL-URN" class="headerlink" title="URI/URL/URN"></a>URI/URL/URN</h3><p><img src="/assets/blogImgs/url.jpg" alt=""><br>URI是 Uniform Resource Identifiers 的简写，统一资源标识符。<br>URL是 Uniform Resource Locators 的简写，统一资源定位符。<br>URN是 Uniform Resource Names 的简写，统一资源命名符。  </p>
+<p>URL和URN是URI的子集，以下例子都是URI，但不一定都是URL。  </p>
+<blockquote>
+<p><a href="ftp://ftp.is.co.za/rfc/rfc1808.txt" target="_blank" rel="noopener">ftp://ftp.is.co.za/rfc/rfc1808.txt</a> (also a URL because of the protocol)<br><a href="http://www.ietf.org/rfc/rfc2396.txt" target="_blank" rel="noopener">http://www.ietf.org/rfc/rfc2396.txt</a> (also a URL because of the protocol)<br>ldap://[2001:db8::7]/c=GB?objectClass?one (also a URL because of the protocol)<br>mailto:<a href="mailto:John.Doe@example.com" target="_blank" rel="noopener">John.Doe@example.com</a> (also a URL because of the protocol)<br>news:comp.infosystems.<a href="http://www.servers.unix" target="_blank" rel="noopener">www.servers.unix</a> (also a URL because of the protocol)<br>tel:+1-816-555-1212<br>telnet://192.0.2.16:80/ (also a URL because of the protocol)<br>urn:oasis:names:specification:docbook:dtd:xml:4.1.2  </p>
+</blockquote>
+<h3 id="简单的理解"><a href="#简单的理解" class="headerlink" title="简单的理解"></a>简单的理解</h3><p>http协议在一条通路上必然有一端是客户端另一端是服务端，而且只能由客户端发出请求，服务端响应该请求。  </p>
+<p>http请求的根本目标是操作资源，所以请求中使用URI定位资源，使用方法表明意图(restful)：  </p>
+<ul>
+<li>GET方法，请求资源，查  </li>
+<li>POST方法，推送资源，增  </li>
+<li>PUT方法，改动资源，改  </li>
+<li>DELETE方法，删除资源，删</li>
+<li>HEAD方法，同GET，响应不返回报文主体，用于确认URI有效性和资源更新时间  </li>
+</ul>
+<p>持久连接（HTTP Persistent Connections），建立TCP连接后只要任一端没有提出断开连接，则保持连接状态，提高请求相应速度。在同一TCP连接上会有多有HTTP连接，同时线管化（Pipelining）方式使得不用等待上个请求的相应就可以发送下一个请求。  </p>
+<p>stateless，不会保存请求或相应的状态，优点在于减少服务器负担。如果需要状态则使用Cookie。客户端第一次向服务端发出请求（要求Cookie），服务端生成Cookie并记录下Cookie与客户端的映射，在响应返回Cookie,客户端收到后保存。之后的每个请求都带上Cookie，即保存了状态。Cookie就是一个字符id。  </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/03/26/http/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-git-bash-quick-start" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -304,11 +394,8 @@
         <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="https://music.163.com/outchain/player?type=2&id=694286&auto=0&height=66"></iframe>  
 
 
-<h3 id="博客开通小记"><a href="#博客开通小记" class="headerlink" title="博客开通小记"></a>博客开通小记</h3><p>折腾了大半天，终于把hexo + github page 做到了多设备同步和自动部署，哈哈哈。  </p>
-<h3 id="盗取yilia作者的歌词"><a href="#盗取yilia作者的歌词" class="headerlink" title="盗取yilia作者的歌词"></a>盗取yilia作者的歌词</h3><p>为什么自动构建后音乐链接iframe失效了呢。。<br>原来是https的原因啊 </p>
-        
-          <a class="article-more-a" href="/2018/03/20/1037/#more">more >></a>
-        
+<h3 id="博客开通小记"><a href="#博客开通小记" class="headerlink" title="博客开通小记"></a>博客开通小记</h3><p>经过一番折腾，终于把github page做到了自动部署，现在可以方便的写博了.  </p>
+
       
 
       
@@ -450,11 +537,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">dairy</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">dairy</a>
               </li>
             
             <div class="clearfix"></div>

@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Mr.luo&#39;s blogs">
 <meta property="og:description" content="概述当前http协议主流版本是HTTP/1.1, 预计不久将来会使用HTTP/2.0   URI/URL/URNURI是 Uniform Resource Identifiers 的简写，统一资源标识符。URL是 Uniform Resource Locators 的简写，统一资源定位符。URN是 Uniform Resource Names 的简写，统一资源命名符。   URL和URN是URI的">
 <meta property="og:image" content="http://yoursite.com/assets/blogImgs/url.jpg">
-<meta property="og:updated_time" content="2018-03-26T10:21:23.993Z">
+<meta property="og:updated_time" content="2018-03-27T03:14:44.539Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="http协议小记">
 <meta name="twitter:description" content="概述当前http协议主流版本是HTTP/1.1, 预计不久将来会使用HTTP/2.0   URI/URL/URNURI是 Uniform Resource Identifiers 的简写，统一资源标识符。URL是 Uniform Resource Locators 的简写，统一资源定位符。URN是 Uniform Resource Names 的简写，统一资源命名符。   URL和URN是URI的">
@@ -171,6 +171,7 @@
 </ul>
 <p>持久连接（HTTP Persistent Connections），建立TCP连接后只要任一端没有提出断开连接，则保持连接状态，提高请求相应速度。在同一TCP连接上会有多有HTTP连接，同时线管化（Pipelining）方式使得不用等待上个请求的相应就可以发送下一个请求。  </p>
 <p>stateless，不会保存请求或相应的状态，优点在于减少服务器负担。如果需要状态则使用Cookie。客户端第一次向服务端发出请求（要求Cookie），服务端生成Cookie并记录下Cookie与客户端的映射，在响应返回Cookie,客户端收到后保存。之后的每个请求都带上Cookie，即保存了状态。Cookie就是一个字符id。  </p>
+<p>http报文实际是字符串文本，用CR+LF空行划分报文的首部和主体。报文分为请求报文和响应报文，报文的首部结构如下：<br>| Name | Academy | score |<br>| - | :-: | -: |<br>| Harry Potter | Gryffindor| 90 |<br>| Hermione Granger | Gryffindor | 100 |<br>| Draco Malfoy | Slytherin | 90 |</p>
 
       
 
@@ -391,7 +392,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color1">dairy</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -399,7 +400,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">dairy</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
             
             <div class="clearfix"></div>

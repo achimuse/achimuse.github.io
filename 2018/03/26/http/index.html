@@ -18,7 +18,12 @@
 <meta property="og:image" content="http://yoursite.com/assets/blogImgs/url.jpg">
 <meta property="og:image" content="http://yoursite.com/assets/blogImgs/httpPacket.jpg">
 <meta property="og:image" content="http://yoursite.com/assets/blogImgs/httpPacketReal.jpg">
-<meta property="og:updated_time" content="2018-03-27T07:31:59.474Z">
+<meta property="og:image" content="http://yoursite.com/assets/blogImgs/formData.jpg">
+<meta property="og:image" content="http://yoursite.com/assets/blogImgs/formRealHead.jpg">
+<meta property="og:image" content="http://yoursite.com/assets/blogImgs/formRealEntity.jpg">
+<meta property="og:image" content="http://yoursite.com/assets/blogImgs/byteranges01.jpg">
+<meta property="og:image" content="http://yoursite.com/assets/blogImgs/byteranges02.jpg">
+<meta property="og:updated_time" content="2018-03-27T10:43:24.342Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="http协议小记">
 <meta name="twitter:description" content="概述当前http协议主流版本是HTTP/1.1, 预计不久将来会使用HTTP/2.0   URI/URL/URNURI是 Uniform Resource Identifiers 的简写，统一资源标识符。URL是 Uniform Resource Locators 的简写，统一资源定位符。URN是 Uniform Resource Names 的简写，统一资源命名符。   URL和URN是URI的">
@@ -169,12 +174,14 @@
 <li>POST方法，推送资源，增  </li>
 <li>PUT方法，改动资源，改  </li>
 <li>DELETE方法，删除资源，删</li>
-<li>HEAD方法，同GET，响应不返回报文主体，用于确认URI有效性和资源更新时间  <h4 id="持久连接与管道化"><a href="#持久连接与管道化" class="headerlink" title="持久连接与管道化"></a>持久连接与管道化</h4>持久连接（HTTP Persistent Connections），建立TCP连接后只要任一端没有提出断开连接，则保持连接状态，提高请求相应速度。在同一TCP连接上会有多有HTTP连接，同时线管化（Pipelining）方式使得不用等待上个请求的相应就可以发送下一个请求。  <h4 id="无状态与Cookie"><a href="#无状态与Cookie" class="headerlink" title="无状态与Cookie"></a>无状态与Cookie</h4>stateless，不会保存请求或相应的状态，优点在于减少服务器负担。如果需要状态则使用Cookie。客户端第一次向服务端发出请求（要求Cookie），服务端生成Cookie并记录下Cookie与客户端的映射，在响应返回Cookie,客户端收到后保存。之后的每个请求都带上Cookie，即保存了状态。Cookie就是一个字符id。  <h4 id="报文结构"><a href="#报文结构" class="headerlink" title="报文结构"></a>报文结构</h4>http报文实际是字符串文本，用CR+LF空行划分报文的首部和主体。报文分为请求报文和响应报文。<br><img src="/assets/blogImgs/httpPacket.jpg" alt="">  <blockquote>
-<p>请求行包含请求方法、URI、HTTP版本<br>状态行包含状态吗、原因短语、HTTP版本  </p>
-</blockquote>
+<li>HEAD方法，同GET，响应不返回报文主体，用于确认URI有效性和资源更新时间  <h4 id="持久连接与管道化"><a href="#持久连接与管道化" class="headerlink" title="持久连接与管道化"></a>持久连接与管道化</h4>持久连接（HTTP Persistent Connections），建立TCP连接后只要任一端没有提出断开连接，则保持连接状态，提高请求相应速度。在同一TCP连接上会有多有HTTP连接，同时线管化（Pipelining）方式使得不用等待上个请求的相应就可以发送下一个请求。  <h4 id="无状态与Cookie"><a href="#无状态与Cookie" class="headerlink" title="无状态与Cookie"></a>无状态与Cookie</h4>stateless，不会保存请求或相应的状态，优点在于减少服务器负担。如果需要状态则使用Cookie。客户端第一次向服务端发出请求（要求Cookie），服务端生成Cookie并记录下Cookie与客户端的映射，在响应返回Cookie,客户端收到后保存。之后的每个请求都带上Cookie，即保存了状态。Cookie就是一个字符id。  <h4 id="报文结构"><a href="#报文结构" class="headerlink" title="报文结构"></a>报文结构</h4>http报文实际是字符串文本，用CR+LF空行划分报文的首部和主体。报文分为请求报文和响应报文。请求行包含请求方法、URI、HTTP版本，状态行包含状态吗、原因短语、HTTP版本。<br><img src="/assets/blogImgs/httpPacket.jpg" alt=""><br><img src="/assets/blogImgs/httpPacketReal.jpg" alt="">  <h4 id="传输"><a href="#传输" class="headerlink" title="传输"></a>传输</h4>http报文在传输过程中，通过内容编码提升传输速率，通过分块实现浏览器逐步显示。<br><strong>报文（message）</strong><br>http通信的基本单位，由octet sequence组成。如一个完整的请求或响应就是一个message。<br><strong>实体（entity）</strong><br>请求或响应中的有效载荷数据，即实体首部和实体主体。<br><strong>内容编码</strong><br>对实体entity进行压缩（gzip/compress/deflate/identity）后传输，类似于发邮件时压缩附件。<br><strong>分块传输编码（chunked transfer coding）</strong><br>将实体主体分成多块，每一块用十六进制标记大小，最后一块使用“0（CR+LF）”标记。<br><strong>多部分对象集合Multipart</strong><br>邮件采用了MIME（multipurpose internet mail extensions）机制使其支持处理文本（文本文件）、图片（二进制文件）等多种数据类型。http采用了其中的multipart方法，用于支持多类型数据。  </li>
+</ul>
+<ul>
+<li><p>multipart/form-data<br>上传web表单文件时使用。<br><img src="/assets/blogImgs/formData.jpg" alt=""><br>以下是一个真实的post请求，使用了表单上传.xlxs表格<br><img src="/assets/blogImgs/formRealHead.jpg" alt="请求头部"><br><img src="/assets/blogImgs/formRealEntity.jpg" alt="请求实体"> </p>
+</li>
+<li><p>multipart/byteranges<br>状态码206（Partial Content）响应报文包含多个范围内容时使用。<br><img src="/assets/blogImgs/byteranges01.jpg" alt=""><br><img src="/assets/blogImgs/byteranges02.jpg" alt=""> </p>
 </li>
 </ul>
-<p><img src="/assets/blogImgs/httpPacketReal.jpg" alt="">  </p>
 
       
 
@@ -287,7 +294,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#URI-URL-URN"><span class="toc-number">2.</span> <span class="toc-text">URI/URL/URN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本概念"><span class="toc-number">3.</span> <span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#被动性"><span class="toc-number">3.1.</span> <span class="toc-text">被动性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常用方法"><span class="toc-number">3.2.</span> <span class="toc-text">常用方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#持久连接与管道化"><span class="toc-number">3.3.</span> <span class="toc-text">持久连接与管道化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#无状态与Cookie"><span class="toc-number">3.4.</span> <span class="toc-text">无状态与Cookie</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#报文结构"><span class="toc-number">3.5.</span> <span class="toc-text">报文结构</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#URI-URL-URN"><span class="toc-number">2.</span> <span class="toc-text">URI/URL/URN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本概念"><span class="toc-number">3.</span> <span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#被动性"><span class="toc-number">3.1.</span> <span class="toc-text">被动性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常用方法"><span class="toc-number">3.2.</span> <span class="toc-text">常用方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#持久连接与管道化"><span class="toc-number">3.3.</span> <span class="toc-text">持久连接与管道化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#无状态与Cookie"><span class="toc-number">3.4.</span> <span class="toc-text">无状态与Cookie</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#报文结构"><span class="toc-number">3.5.</span> <span class="toc-text">报文结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#传输"><span class="toc-number">3.6.</span> <span class="toc-text">传输</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>

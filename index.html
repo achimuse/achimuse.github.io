@@ -179,7 +179,13 @@
 <h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>缓存代理服务器可以避免多次从源服务器转发资源，客户端可更快地获取资源，也减轻服务端处理负担。  </p>
 <p><strong>TTL（Time to Live）</strong><br>由于源服务器资源更新时，缓存无法保证其有效性。缓存服务器会依据包含<code>no-cache</code>字段的请求、缓存有效期等因素，向源服务器确认资源的有效性，判断失效则会拉取新的资源。  </p>
 <p><strong>客户端缓存</strong><br>浏览器也可以缓存一定的资源内容。  </p>
-<h2 id="HTTP首部"><a href="#HTTP首部" class="headerlink" title="HTTP首部"></a>HTTP首部</h2>
+<h2 id="HTTP首部字段"><a href="#HTTP首部字段" class="headerlink" title="HTTP首部字段"></a>HTTP首部字段</h2><p>首部字段是报文的要素，表明报文主体大小、使用的语言、编码方式、认证信息等等。</p>
+<h3 id="首部字段结构"><a href="#首部字段结构" class="headerlink" title="首部字段结构"></a>首部字段结构</h3><p>由首部字段名和字段值组成，用:分隔。例如Content-Type字段，表明报文主体的对象类型。<br><img src="/assets/blogImgs/headerField.jpg" alt=""><br>单个首部字段可以有多个字段值。<br><img src="/assets/blogImgs/headerField.jpg" alt=""></p>
+<h3 id="首部字段类型"><a href="#首部字段类型" class="headerlink" title="首部字段类型"></a>首部字段类型</h3><p><strong>通用首部字段（General Header Fields）</strong><br>请求报文和响应报文两方都会使用的首部。<br><img src="/assets/blogImgs/generalHeader.jpg" alt=""></p>
+<p><strong>请求首部字段（Request Header Fields）</strong><br>从客户端向服务器端发送请求报文时使用的首部。补充了请求的附加<br>内容、客户端信息、响应内容相关优先级等信息。<br><img src="/assets/blogImgs/requestHeader.jpg" alt=""></p>
+<p><strong>响应首部字段（Response Header Fields）</strong><br>从服务器端向客户端返回响应报文时使用的首部。补充了响应的附加<br>内容，也会要求客户端附加额外的内容信息。<br><img src="/assets/blogImgs/responseHeader.jpg" alt=""></p>
+<p><strong>实体首部字段（Entity Header Fields）</strong><br>针对请求报文和响应报文的实体部分使用的首部。补充了资源内容更<br>新时间等与实体有关的信息。<br><img src="/assets/blogImgs/entityHeader.jpg" alt=""></p>
+
       
 
       

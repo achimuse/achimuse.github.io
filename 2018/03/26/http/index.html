@@ -26,12 +26,13 @@
 <meta property="og:image" content="http://yoursite.com/assets/blogImgs/statusCode.jpg">
 <meta property="og:image" content="http://yoursite.com/assets/blogImgs/gateway.jpg">
 <meta property="og:image" content="http://yoursite.com/assets/blogImgs/headerField.jpg">
-<meta property="og:image" content="http://yoursite.com/assets/blogImgs/headerField.jpg">
+<meta property="og:image" content="http://yoursite.com/assets/blogImgs/headerFields.jpg">
 <meta property="og:image" content="http://yoursite.com/assets/blogImgs/generalHeader.jpg">
+<meta property="og:image" content="http://yoursite.com/assets/blogImgs/transferCoding.jpg">
 <meta property="og:image" content="http://yoursite.com/assets/blogImgs/requestHeader.jpg">
 <meta property="og:image" content="http://yoursite.com/assets/blogImgs/responseHeader.jpg">
 <meta property="og:image" content="http://yoursite.com/assets/blogImgs/entityHeader.jpg">
-<meta property="og:updated_time" content="2018-03-28T03:15:50.955Z">
+<meta property="og:updated_time" content="2018-03-28T06:32:41.210Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="http协议小记">
 <meta name="twitter:description" content="URI/URL/URNURI是 Uniform Resource Identifiers 的简写，统一资源标识符。URL是 Uniform Resource Locators 的简写，统一资源定位符。URN是 Uniform Resource Names 的简写，统一资源命名符。   URL和URN是URI的子集，以下例子都是URI，但不一定都是URL。    ftp://ftp.is.co.za">
@@ -211,11 +212,25 @@
 <p><strong>TTL（Time to Live）</strong><br>由于源服务器资源更新时，缓存无法保证其有效性。缓存服务器会依据包含<code>no-cache</code>字段的请求、缓存有效期等因素，向源服务器确认资源的有效性，判断失效则会拉取新的资源。  </p>
 <p><strong>客户端缓存</strong><br>浏览器也可以缓存一定的资源内容。  </p>
 <h2 id="HTTP首部字段"><a href="#HTTP首部字段" class="headerlink" title="HTTP首部字段"></a>HTTP首部字段</h2><p>首部字段是报文的要素，表明报文主体大小、使用的语言、编码方式、认证信息等等。</p>
-<h3 id="首部字段结构"><a href="#首部字段结构" class="headerlink" title="首部字段结构"></a>首部字段结构</h3><p>由首部字段名和字段值组成，用:分隔。例如Content-Type字段，表明报文主体的对象类型。<br><img src="/assets/blogImgs/headerField.jpg" alt=""><br>单个首部字段可以有多个字段值。<br><img src="/assets/blogImgs/headerField.jpg" alt=""></p>
-<h3 id="首部字段类型"><a href="#首部字段类型" class="headerlink" title="首部字段类型"></a>首部字段类型</h3><p><strong>通用首部字段（General Header Fields）</strong><br>请求报文和响应报文两方都会使用的首部。<br><img src="/assets/blogImgs/generalHeader.jpg" alt=""></p>
-<p><strong>请求首部字段（Request Header Fields）</strong><br>从客户端向服务器端发送请求报文时使用的首部。补充了请求的附加<br>内容、客户端信息、响应内容相关优先级等信息。<br><img src="/assets/blogImgs/requestHeader.jpg" alt=""></p>
-<p><strong>响应首部字段（Response Header Fields）</strong><br>从服务器端向客户端返回响应报文时使用的首部。补充了响应的附加<br>内容，也会要求客户端附加额外的内容信息。<br><img src="/assets/blogImgs/responseHeader.jpg" alt=""></p>
-<p><strong>实体首部字段（Entity Header Fields）</strong><br>针对请求报文和响应报文的实体部分使用的首部。补充了资源内容更<br>新时间等与实体有关的信息。<br><img src="/assets/blogImgs/entityHeader.jpg" alt=""></p>
+<h3 id="首部字段结构"><a href="#首部字段结构" class="headerlink" title="首部字段结构"></a>首部字段结构</h3><p>由首部字段名和字段值组成，用:分隔。例如Content-Type字段，表明报文主体的对象类型。<br><img src="/assets/blogImgs/headerField.jpg" alt=""><br>单个首部字段可以有多个字段值。<br><img src="/assets/blogImgs/headerFields.jpg" alt=""></p>
+<h3 id="首部字段类型"><a href="#首部字段类型" class="headerlink" title="首部字段类型"></a>首部字段类型</h3><h4 id="通用首部字段（General-Header-Fields）"><a href="#通用首部字段（General-Header-Fields）" class="headerlink" title="通用首部字段（General Header Fields）"></a>通用首部字段（General Header Fields）</h4><p>请求报文和响应报文两方都会使用的首部。<br><img src="/assets/blogImgs/generalHeader.jpg" alt=""><br><strong>Connection</strong><br> 转发过程中删除某些字段，例如<code>Connection: Hop-by-hop</code>在代理转发给服务端前会删除Hop-by-hop字段。<br> 管理持久连接，例如<code>Connection: close</code>表明是断开tcp连接；客户端请求<code>Connection: Keep-Alive</code>，服务端响应<code>Keep-Alive: time-out=10, max=500</code>+<code>Connection: Keep-Alive</code>表明是建立持久连接。  </p>
+<p><strong>Transfer-Encoding</strong><br>规定传输报文主体编码方式，实际上HTTP/1.1中只对分块编码有效，其他的编码方式由内容编码字段<code>Content-Encoding</code>指定。<br>以下响应报文，采用了分块编码，被分成3312字节和914字节大小的分块，最后以0字节表示块结束。<br><img src="/assets/blogImgs/transferCoding.jpg" alt=""> </p>
+<h4 id="请求首部字段（Request-Header-Fields）"><a href="#请求首部字段（Request-Header-Fields）" class="headerlink" title="请求首部字段（Request Header Fields）"></a>请求首部字段（Request Header Fields）</h4><p>从客户端向服务器端发送请求报文时使用的首部。补充了请求的附加<br>内容、客户端信息、响应内容相关优先级等信息。<br><img src="/assets/blogImgs/requestHeader.jpg" alt=""><br><strong>Accept</strong><br>通知服务端用户代理支持的媒体类型及其优先级，媒体类型有：</p>
+<ul>
+<li>文本文件如text/html, text/plain, text/css, application/xhtml+xml, application/xml.  </li>
+<li>图片文件（二进制文件）如image/jpeg, image/gif, image/png.  </li>
+<li>视频文件（二进制文件）如video/maped, video/quicktime.  </li>
+<li>应用程序使用的二进制文件如application/octet-stream, application/zip.<br>指定优先级可在字段值后加上q=，分号;分隔，范围0.000–1.000，不指定默认q=1.0。<br><code>Accept: text/html,application/xhtml+xml,application/xml;q=0.7</code>  </li>
+</ul>
+<p><strong>Accep-Charset</strong><br>来通知服务器用户代理支持的字符集及字符集的相对优先顺序，优先级同上。<br><code>Accept-Charset: iso-8859-5, unicode-1-1;q=0.8</code>  </p>
+<p><strong>Accept-Encoding</strong><br>通知服务器用户代理支持的内容编码（使用星号*表示任意格式）及内容编码的优先级顺序，优先级同上。<br><code>Accept-Encoding: gzip, deflate, compress, identity</code><br>同样的Accept-Language字段表明支持的自然语言集。<br><code>Accept-Language: zh-cn,zh;q=0.7,en-us,en;q=0.3</code>  </p>
+<p><strong>Authorization</strong><br>用户代理接收到响应状态码为401 Unauthorized时，会把首部字段Authorization加入请求，包含着认证信息。<br><code>Authorization: Basic dWVub3NlbjpwYXNzd29yZA==</code>  </p>
+<p><strong>Host</strong><br>多个虚拟主机在同一个IP上，使用Host字段可以加以区分,若服务端未设主机名直接发送空值即可。<br><code>Host: www.hackr.jp</code>    </p>
+<p><strong>User-Agent</strong><br>将创建请求的浏览器和用户代理名称等信息传达给服务器。如果经过代理也可能加上代理服务器名称。<br><code>User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:13.0)</code></p>
+<p><strong>Max-Forwards</strong><br>报文途经多个代理服务器有可能在代理间变成死循环，Max-Forwards的值是一个数字，每经过一个服务器就会减1，为0之后服务器不再转发并直接返回响应。（实际上tcp/ip的路由算法里也有类似机制）  </p>
+<p><strong>Range</strong><br>对于只需获取部分资源的范围请求，包含首部字段 Range 即可告知服<br>务器资源的指定范围。<br>接收到附带 Range 首部字段请求的服务器，会在处理请求之后返回状<br>态码为 206 Partial Content 响应。无法处理该范围请求时，则会返<br>回状态码 200 OK 的响应及全部资源。<br><code>Range: bytes=5001-10000</code>   </p>
+<h4 id="响应首部字段（Response-Header-Fields）"><a href="#响应首部字段（Response-Header-Fields）" class="headerlink" title="响应首部字段（Response Header Fields）"></a>响应首部字段（Response Header Fields）</h4><p>从服务器端向客户端返回响应报文时使用的首部。补充了响应的附加<br>内容，也会要求客户端附加额外的内容信息。<br><img src="/assets/blogImgs/responseHeader.jpg" alt=""><br><strong>Accept-Ranges</strong><br>告知客户端服务端能否处理范围请求，以指定获取服务器端某个部分的资源。可指定的字段值有两种，可处理范围请求时指定其为 bytes，反之则指定其为 none。<br><code>Accept-Ranges: bytes</code><br><code>Accept-Ranges: none</code>  </p>
+<h4 id="实体首部字段（Entity-Header-Fields）"><a href="#实体首部字段（Entity-Header-Fields）" class="headerlink" title="实体首部字段（Entity Header Fields）"></a>实体首部字段（Entity Header Fields）</h4><p>针对请求报文和响应报文的实体部分使用的首部。补充了资源内容更<br>新时间等与实体有关的信息。<br><img src="/assets/blogImgs/entityHeader.jpg" alt=""></p>
 
       
 
@@ -328,7 +343,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#URI-URL-URN"><span class="toc-number">1.</span> <span class="toc-text">URI/URL/URN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本概念"><span class="toc-number">2.</span> <span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#被动性"><span class="toc-number">2.1.</span> <span class="toc-text">被动性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用方法"><span class="toc-number">2.2.</span> <span class="toc-text">常用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#持久连接与管道化"><span class="toc-number">2.3.</span> <span class="toc-text">持久连接与管道化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#无状态与Cookie"><span class="toc-number">2.4.</span> <span class="toc-text">无状态与Cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#报文结构"><span class="toc-number">2.5.</span> <span class="toc-text">报文结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传输"><span class="toc-number">2.6.</span> <span class="toc-text">传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内容协商（Content-Negotiation）"><span class="toc-number">2.7.</span> <span class="toc-text">内容协商（Content Negotiation）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#状态码"><span class="toc-number">2.8.</span> <span class="toc-text">状态码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通信数据转发"><span class="toc-number">2.9.</span> <span class="toc-text">通信数据转发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存"><span class="toc-number">2.10.</span> <span class="toc-text">缓存</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP首部字段"><span class="toc-number">3.</span> <span class="toc-text">HTTP首部字段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#首部字段结构"><span class="toc-number">3.1.</span> <span class="toc-text">首部字段结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#首部字段类型"><span class="toc-number">3.2.</span> <span class="toc-text">首部字段类型</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#URI-URL-URN"><span class="toc-number">1.</span> <span class="toc-text">URI/URL/URN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本概念"><span class="toc-number">2.</span> <span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#被动性"><span class="toc-number">2.1.</span> <span class="toc-text">被动性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用方法"><span class="toc-number">2.2.</span> <span class="toc-text">常用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#持久连接与管道化"><span class="toc-number">2.3.</span> <span class="toc-text">持久连接与管道化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#无状态与Cookie"><span class="toc-number">2.4.</span> <span class="toc-text">无状态与Cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#报文结构"><span class="toc-number">2.5.</span> <span class="toc-text">报文结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传输"><span class="toc-number">2.6.</span> <span class="toc-text">传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内容协商（Content-Negotiation）"><span class="toc-number">2.7.</span> <span class="toc-text">内容协商（Content Negotiation）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#状态码"><span class="toc-number">2.8.</span> <span class="toc-text">状态码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通信数据转发"><span class="toc-number">2.9.</span> <span class="toc-text">通信数据转发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存"><span class="toc-number">2.10.</span> <span class="toc-text">缓存</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP首部字段"><span class="toc-number">3.</span> <span class="toc-text">HTTP首部字段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#首部字段结构"><span class="toc-number">3.1.</span> <span class="toc-text">首部字段结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#首部字段类型"><span class="toc-number">3.2.</span> <span class="toc-text">首部字段类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#通用首部字段（General-Header-Fields）"><span class="toc-number">3.2.1.</span> <span class="toc-text">通用首部字段（General Header Fields）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#请求首部字段（Request-Header-Fields）"><span class="toc-number">3.2.2.</span> <span class="toc-text">请求首部字段（Request Header Fields）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#响应首部字段（Response-Header-Fields）"><span class="toc-number">3.2.3.</span> <span class="toc-text">响应首部字段（Response Header Fields）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实体首部字段（Entity-Header-Fields）"><span class="toc-number">3.2.4.</span> <span class="toc-text">实体首部字段（Entity Header Fields）</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -440,11 +455,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
             
             <div class="clearfix"></div>

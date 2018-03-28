@@ -33,7 +33,11 @@
 <meta property="og:image" content="http://yoursite.com/assets/blogImgs/responseHeader.jpg">
 <meta property="og:image" content="http://yoursite.com/assets/blogImgs/entityHeader.jpg">
 <meta property="og:image" content="http://yoursite.com/assets/blogImgs/contentRange.jpg">
-<meta property="og:updated_time" content="2018-03-28T07:13:41.150Z">
+<meta property="og:image" content="http://yoursite.com/assets/blogImgs/setCookie.jpg">
+<meta property="og:image" content="http://yoursite.com/assets/blogImgs/basic.jpg">
+<meta property="og:image" content="http://yoursite.com/assets/blogImgs/digest.jpg">
+<meta property="og:image" content="http://yoursite.com/assets/blogImgs/formBase.jpg">
+<meta property="og:updated_time" content="2018-03-28T09:21:11.791Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="http协议小记">
 <meta name="twitter:description" content="URI/URL/URNURI是 Uniform Resource Identifiers 的简写，统一资源标识符。URL是 Uniform Resource Locators 的简写，统一资源定位符。URN是 Uniform Resource Names 的简写，统一资源命名符。   URL和URN是URI的子集，以下例子都是URI，但不一定都是URL。    ftp://ftp.is.co.za">
@@ -171,12 +175,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="URI-URL-URN"><a href="#URI-URL-URN" class="headerlink" title="URI/URL/URN"></a>URI/URL/URN</h2><p><img src="/assets/blogImgs/url.jpg" alt=""><br>URI是 Uniform Resource Identifiers 的简写，统一资源标识符。<br>URL是 Uniform Resource Locators 的简写，统一资源定位符。<br>URN是 Uniform Resource Names 的简写，统一资源命名符。  </p>
+        <h3 id="URI-URL-URN"><a href="#URI-URL-URN" class="headerlink" title="URI/URL/URN"></a>URI/URL/URN</h3><p><img src="/assets/blogImgs/url.jpg" alt=""><br>URI是 Uniform Resource Identifiers 的简写，统一资源标识符。<br>URL是 Uniform Resource Locators 的简写，统一资源定位符。<br>URN是 Uniform Resource Names 的简写，统一资源命名符。  </p>
 <p>URL和URN是URI的子集，以下例子都是URI，但不一定都是URL。  </p>
 <blockquote>
 <p><a href="ftp://ftp.is.co.za/rfc/rfc1808.txt" target="_blank" rel="noopener">ftp://ftp.is.co.za/rfc/rfc1808.txt</a> (also a URL because of the protocol)<br><a href="http://www.ietf.org/rfc/rfc2396.txt" target="_blank" rel="noopener">http://www.ietf.org/rfc/rfc2396.txt</a> (also a URL because of the protocol)<br>ldap://[2001:db8::7]/c=GB?objectClass?one (also a URL because of the protocol)<br>mailto:<a href="mailto:John.Doe@example.com" target="_blank" rel="noopener">John.Doe@example.com</a> (also a URL because of the protocol)<br>news:comp.infosystems.<a href="http://www.servers.unix" target="_blank" rel="noopener">www.servers.unix</a> (also a URL because of the protocol)<br>tel:+1-816-555-1212<br>telnet://192.0.2.16:80/ (also a URL because of the protocol)<br>urn:oasis:names:specification:docbook:dtd:xml:4.1.2  </p>
 </blockquote>
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="被动性"><a href="#被动性" class="headerlink" title="被动性"></a>被动性</h3><p>http协议在一条通路上必然有一端是客户端另一端是服务端，而且只能由客户端发出请求，服务端响应该请求。  </p>
+<h3 id="被动性"><a href="#被动性" class="headerlink" title="被动性"></a>被动性</h3><p>http协议在一条通路上必然有一端是客户端另一端是服务端，而且只能由客户端发出请求，服务端响应该请求。  </p>
 <h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><p>http请求的根本目标是操作资源，所以请求中使用URI定位资源，使用方法表明意图(restful)：  </p>
 <ul>
 <li>GET方法，请求资源，查  </li>
@@ -241,7 +245,19 @@
 <p><strong>Content–Type</strong><br>告知客户端实体主体内对象的媒体类型, 和首部字段Accept一样，字段值用 type/subtype 形式赋值。<br><code>Content-Type: text/html; charset=UTF-8</code>  </p>
 <p><strong>Content–Range</strong><br>针对范围请求，返回响应时使用的首部字段Content-Range，能告知客户端作为响应返回的实体的哪个部分符合范围请求。字段值以字节为单位，表示当前发送部分及整个实体大小。<br><img src="/assets/blogImgs/contentRange.jpg" alt=""></p>
 <p><strong>Content-Location</strong><br>Content-Location 表示的是报文主体返回资源对应的URI。  </p>
-<p><strong>Expires</strong><br>将资源失效的日期告知客户端。缓存服务器在接收到含有首部字段Expires的响应后，会以缓存来应答请求，在Expires字段值指定的时间之前，响应的副本会一直被保存。当超过指定的时间后，缓存服务器在请求发送过来时，会转向源服务器请求资源。<br>源服务器不希望缓存服务器对资源缓存时，最好在 Expires 字段内写入与首部字段 Date 相同的时间值。<br>当首部字段Cache-Control有指定 max-age 指令时，比起首部字段 Expires，会优先处理 max-age 指令。<br><code>Expires: Wed, 04 Jul 2012 08:26:05 GMT</code> </p>
+<p><strong>Expires</strong><br>将资源失效的日期告知客户端。缓存服务器在接收到含有首部字段Expires的响应后，会以缓存来应答请求，在Expires字段值指定的时间之前，响应的副本会一直被保存。当超过指定的时间后，缓存服务器在请求发送过来时，会转向源服务器请求资源。<br>源服务器不希望缓存服务器对资源缓存时，最好在 Expires 字段内写入与首部字段 Date 相同的时间值。<br>当首部字段Cache-Control有指定 max-age 指令时，比起首部字段 Expires，会优先处理 max-age 指令。<br><code>Expires: Wed, 04 Jul 2012 08:26:05 GMT</code>   </p>
+<h4 id="Cookie首部字段（RCookie-Fields）"><a href="#Cookie首部字段（RCookie-Fields）" class="headerlink" title="Cookie首部字段（RCookie Fields）"></a>Cookie首部字段（RCookie Fields）</h4><p><strong>Set-Cookie</strong><br>当服务器准备开始管理客户端的状态时，会事先告知各种信息。以下是Set-Cookie 的字段值。<br><img src="/assets/blogImgs/setCookie.jpg" alt=""></p>
+<p><strong>Cookie</strong><br>首部字段 Cookie 会告知服务器，当客户端想获得 HTTP 状态管理支<br>持时，就会在请求中包含从服务器接收到的 Cookie。接收到多个<br>Cookie 时，同样可以以多个 Cookie 形式发送。</p>
+<h3 id="认证"><a href="#认证" class="headerlink" title="认证"></a>认证</h3><p>HTTP/1.1使用的认证方式有：</p>
+<ul>
+<li>BASIC 认证（基本认证）  </li>
+<li>DIGEST 认证（摘要认证）  </li>
+<li>FormBase 认证（基于表单认证）  </li>
+<li>SSL 客户端认证  </li>
+</ul>
+<h4 id="Basic认证"><a href="#Basic认证" class="headerlink" title="Basic认证"></a>Basic认证</h4><p>basic认证就是客户端把<code>username:passwd</code>(用户ID和密码用:分隔)字符串，使用Base64编码，写入到请求首部字段Authorization。服务端验证通过返回包含Request-URI资源的响应。<br>缺点是用户名密码都是明文，且无法实现注销操作，基本无人使用。<br><img src="/assets/blogImgs/basic.jpg" alt=""></p>
+<h4 id="Digest认证"><a href="#Digest认证" class="headerlink" title="Digest认证"></a>Digest认证</h4><p>digest认证和basic的区别就是不直接明文传输密码。而是依据401响应首部中WWW-Authenticate字段值nounce随机数（经过Basic64编码的十六进制数），和密码放在一起做MD5运算生成摘要。把摘要和用户名以明文方式发送请求给客户端。<br>虽然避免密码泄漏，但是摘要容易被中间人劫持冒充，很少使用。<br><img src="/assets/blogImgs/digest.jpg" alt=""></p>
+<h4 id="FormBase认证（使用最多）"><a href="#FormBase认证（使用最多）" class="headerlink" title="FormBase认证（使用最多）"></a>FormBase认证（使用最多）</h4><p>与Basic的区别就是用户名密码在传输过程中有HTTPS加密，且使用了Session ID作为Cookie保存了用户状态。<br>步骤 1：客户端把用户ID和密码等登录信息放入报文的实体部分，以POST方法把请求发送给服务器。使用HTTPS通信来进行HTML表单画面的显示和用户输入数据的发送。<br>步骤 2：服务器发放识别用户的SessionID（SessionID与用户存在一一映射）。通过验证从客户端发送过来的登录信息进行身份认证，然后把用户的认证状态与Session ID 绑定后记录在服务器端。向客户端返回响应时，会在首部字段 Set-Cookie 内写入 SessionID（如 PHPSESSID=028a8c…）。Session ID是服务端识别用户认证状态的关键，应使用难以推测的字符串，服务器端也需要进行有效期的管理，并在Cookie内加上 httponly 属性。<br>步骤 3： 客户端接收到从服务器端发来的 Session ID 后，会将其作为Cookie保存在本地。下次向服务器发送请求时，浏览器会自动发送Cookie，Session ID 也随之发送到服务器。服务器端验证Session ID识别用户和其认证状态。<br><img src="/assets/blogImgs/formBase.jpg" alt=""></p>
 
       
 
@@ -354,7 +370,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#URI-URL-URN"><span class="toc-number">1.</span> <span class="toc-text">URI/URL/URN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本概念"><span class="toc-number">2.</span> <span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#被动性"><span class="toc-number">2.1.</span> <span class="toc-text">被动性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用方法"><span class="toc-number">2.2.</span> <span class="toc-text">常用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#持久连接与管道化"><span class="toc-number">2.3.</span> <span class="toc-text">持久连接与管道化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#无状态与Cookie"><span class="toc-number">2.4.</span> <span class="toc-text">无状态与Cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#报文结构"><span class="toc-number">2.5.</span> <span class="toc-text">报文结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传输"><span class="toc-number">2.6.</span> <span class="toc-text">传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内容协商（Content-Negotiation）"><span class="toc-number">2.7.</span> <span class="toc-text">内容协商（Content Negotiation）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#状态码"><span class="toc-number">2.8.</span> <span class="toc-text">状态码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通信数据转发"><span class="toc-number">2.9.</span> <span class="toc-text">通信数据转发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存"><span class="toc-number">2.10.</span> <span class="toc-text">缓存</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP首部字段"><span class="toc-number">3.</span> <span class="toc-text">HTTP首部字段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#首部字段结构"><span class="toc-number">3.1.</span> <span class="toc-text">首部字段结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#首部字段类型"><span class="toc-number">3.2.</span> <span class="toc-text">首部字段类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#通用首部字段（General-Header-Fields）"><span class="toc-number">3.2.1.</span> <span class="toc-text">通用首部字段（General Header Fields）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#请求首部字段（Request-Header-Fields）"><span class="toc-number">3.2.2.</span> <span class="toc-text">请求首部字段（Request Header Fields）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#响应首部字段（Response-Header-Fields）"><span class="toc-number">3.2.3.</span> <span class="toc-text">响应首部字段（Response Header Fields）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实体首部字段（Entity-Header-Fields）"><span class="toc-number">3.2.4.</span> <span class="toc-text">实体首部字段（Entity Header Fields）</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#URI-URL-URN"><span class="toc-number">1.</span> <span class="toc-text">URI/URL/URN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#被动性"><span class="toc-number">2.</span> <span class="toc-text">被动性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用方法"><span class="toc-number">3.</span> <span class="toc-text">常用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#持久连接与管道化"><span class="toc-number">4.</span> <span class="toc-text">持久连接与管道化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#无状态与Cookie"><span class="toc-number">5.</span> <span class="toc-text">无状态与Cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#报文结构"><span class="toc-number">6.</span> <span class="toc-text">报文结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传输"><span class="toc-number">7.</span> <span class="toc-text">传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内容协商（Content-Negotiation）"><span class="toc-number">8.</span> <span class="toc-text">内容协商（Content Negotiation）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#状态码"><span class="toc-number">9.</span> <span class="toc-text">状态码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通信数据转发"><span class="toc-number">10.</span> <span class="toc-text">通信数据转发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存"><span class="toc-number">11.</span> <span class="toc-text">缓存</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP首部字段"><span class="toc-number"></span> <span class="toc-text">HTTP首部字段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#首部字段结构"><span class="toc-number">1.</span> <span class="toc-text">首部字段结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#首部字段类型"><span class="toc-number">2.</span> <span class="toc-text">首部字段类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#通用首部字段（General-Header-Fields）"><span class="toc-number">2.1.</span> <span class="toc-text">通用首部字段（General Header Fields）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#请求首部字段（Request-Header-Fields）"><span class="toc-number">2.2.</span> <span class="toc-text">请求首部字段（Request Header Fields）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#响应首部字段（Response-Header-Fields）"><span class="toc-number">2.3.</span> <span class="toc-text">响应首部字段（Response Header Fields）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实体首部字段（Entity-Header-Fields）"><span class="toc-number">2.4.</span> <span class="toc-text">实体首部字段（Entity Header Fields）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cookie首部字段（RCookie-Fields）"><span class="toc-number">2.5.</span> <span class="toc-text">Cookie首部字段（RCookie Fields）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#认证"><span class="toc-number">3.</span> <span class="toc-text">认证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Basic认证"><span class="toc-number">3.1.</span> <span class="toc-text">Basic认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Digest认证"><span class="toc-number">3.2.</span> <span class="toc-text">Digest认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#FormBase认证（使用最多）"><span class="toc-number">3.3.</span> <span class="toc-text">FormBase认证（使用最多）</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -466,11 +482,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
             
             <div class="clearfix"></div>

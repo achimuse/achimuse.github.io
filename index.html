@@ -267,7 +267,7 @@
 </ul>
 <h3 id="Namespace"><a href="#Namespace" class="headerlink" title="Namespace"></a>Namespace</h3><p>Namespace用于实现多租户资源隔离，通过将集群内部的资源对象分配到不同的Namespace中，形成逻辑上分组不同项目、小组、用户组。<br>Kubernetes集群在启动后，会创建名为default的Namespace，可以通过kubectl get查看。不特别指定时用户创建的Pod、RC、Service都被创建到default这个Namespace上。<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Namespace</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr"> name:</span> <span class="string">development</span></span><br></pre></td></tr></table></figure></p>
 <p>使用kubectl create创建development Namespace以后，可以指定创建Pod等资源到这个Namespace。<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr"> name:</span> <span class="string">busybox</span></span><br><span class="line"><span class="attr"> namespace:</span> <span class="string">development</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr"> containers:</span></span><br><span class="line"><span class="attr"> - image:</span> <span class="string">busybox</span></span><br><span class="line"><span class="attr">   command:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">sleep</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">'3600'</span></span><br><span class="line"><span class="attr">   name:</span> <span class="string">busybox</span></span><br></pre></td></tr></table></figure></p>
-<p>创建该Pod以后需要指定Namespace茶能查看。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get pod --namespace=development</span><br></pre></td></tr></table></figure></p>
+<p>创建该Pod以后需要指定Namespace才能查看。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get pod --namespace=development</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -800,11 +800,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
             
             <div class="clearfix"></div>
